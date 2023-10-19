@@ -58,6 +58,22 @@ class ProductController {
         } 
     }
 
+    public function showProductDetails($id) {
+        // Récupérez les informations du produit en utilisant l'ID
+        $product = $this->productManager->getProductById($id);
+    
+        // Vérifiez si le produit existe
+        if ($product) {
+            // Chargez la vue viewProductDetails avec les données du produit
+            $view = new View('ProductDetails');
+            $view->generate(['title' => 'Détails du Produit', 'product' => $product]);
+        } else {
+            // Gérez le cas où le produit n'existe pas, par exemple, redirigez vers une page d'erreur.
+            // Vous pouvez également afficher un message d'erreur à l'utilisateur.
+        }
+    }
+    
+
     public function editProduct($id) {
         // Vérifier si le formulaire d'édition a été soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,7 +107,7 @@ class ProductController {
         $this->productManager->deleteProduct($id);
 
         // Rediriger vers la page de liste des produits
-        header("Location: index.php?action=list");
+        header("Location: index.php");
     }
 
     
