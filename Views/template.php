@@ -40,10 +40,10 @@
     <main>
         <?= $content ?>
     </main>
-    <footer class="bg-primary text-white py-4 mt-auto">
+    <footer class="bg-primary text-white py-4 mt-auto text-center">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Liens Rapides</h5>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="#">Accueil</a></li>
@@ -52,7 +52,7 @@
                         <li><a class="text-white" href="#">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Nos Produits</h5>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="#">Catégorie 1</a></li>
@@ -61,7 +61,7 @@
                         <li><a class="text-white" href="#">Catégorie 4</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Contact</h5>
                     <ul class="list-unstyled">
                         <li><a class="text-white" href="#">Support</a></li>
@@ -69,7 +69,7 @@
                         <li><a class="text-white" href="#">Livraison et Retours</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Modes de Paiement</h5>
                     <ul class="list-unstyled">
                         <li><i class="fab fa-cc-visa fa-2x text-light"></i></li>
