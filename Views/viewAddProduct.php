@@ -11,7 +11,7 @@
 
     <div class="form-group mt-2">
         <label for="description">Description:</label>
-        <textarea name="description" id="description" class="form-control" required></textarea>
+        <textarea name="description" id="description" class="form-control" rows="10" required></textarea>
         <div class="invalid-feedback">
             Veuillez saisir la description du produit.
         </div>
@@ -57,5 +57,5 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Ajouter le produit</button>
+    <button type="submit" class="btn btn-primary mt-2  mb-4">Ajouter le produit</button>
 </form>
