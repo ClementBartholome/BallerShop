@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <div class="d-flex">
                 <h2 class="card-title"><?= $product['name'] ?></h2>
