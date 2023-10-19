@@ -31,6 +31,10 @@ class Router {
                     $this->userController->logout();
                 } elseif ($_GET['action'] === 'access-denied') {
                     $this->controller->accessDenied();
+                } elseif ($_GET['action'] === 'productDetails' && isset($_GET['id'])) {
+                    $this->productController->showProductDetails($_GET['id']);
+                } elseif ($_GET['action'] === 'delete' && isset($_GET['id'])) {
+                    $this->productController->deleteProduct($_GET['id']);
                 } else {
                     echo "Action non valide.";
                 }
