@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /Ballers/
+
+# Ignorer la réécriture pour les fichiers statiques
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Réécrire toutes les autres requêtes vers index.php
+RewriteRule ^(.*)$ index.php [L]

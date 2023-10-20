@@ -7,7 +7,7 @@
         <?php foreach ($products as $product): ?>
             <div class="col-md-6 col-lg-4 md-4 mt-4">
                 <div class="card">
-                    <a href="index.php?action=productDetails&id=<?= $product['id'] ?>">
+                <a href="/Ballers/product-details?id=<?= $product['id'] ?>">
                         <img src="<?= 'products_images/' . $product['image1'] ?>" alt="Image 1" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><?= $product['name'] ?></h5>

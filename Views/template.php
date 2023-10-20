@@ -12,7 +12,7 @@
         <h1><i class="fas fa-basketball-ball"></i> Ballers Shop</h1>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Accueil</a>
+                <a class="navbar-brand" href="/Ballers">Accueil</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -21,15 +21,15 @@
                     <?php if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) { ?>
                         <?php if ($_SESSION['userRole'] === 'admin') { ?>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="index.php?action=showAddForm">Ajouter un produit</a>
+                            <a class="nav-link" aria-current="page" href="/Ballers/add-product-form">Ajouter un produit</a>
                             </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=logout">Se Déconnecter</a>
+                            <a class="nav-link" href="/Ballers/logout">Se Déconnecter</a>
                         </li>
                     <?php } else { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=login">Se Connecter</a>
+                            <a class="nav-link" href="/Ballers/login">Se Connecter</a>
                         </li>
                     <?php } ?>
                     </ul>

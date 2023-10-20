@@ -1,6 +1,6 @@
 <h2>Ajouter un produit</h2>
 
-<form method="post" action="index.php?action=add" enctype="multipart/form-data" >
+<form method="post" action="/Ballers/add" enctype="multipart/form-data" >
     <div class="form-group mt-2">
         <label for="name">Nom du produit:</label>
         <input type="text" name="name" id="name" class="form-control" required>

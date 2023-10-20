@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <h2 class="card-title"><?= $product['name'] ?></h2>
                 <?php if ($_SESSION['userRole'] === 'admin') { ?>
-                        <a class="btn btn-danger ms-auto" id="deleteProductButton" href="index.php?action=delete&id=<?= $product['id'] ?>" data-product-id="<?= $product['id'] ?>">Supprimer le produit</a>
+                        <a class="btn btn-danger ms-auto" id="deleteProductButton" href="/Ballers/delete?id=<?= $product['id'] ?>" data-product-id="<?= $product['id'] ?>">Supprimer le produit</a>
                 <?php } ?>
             </div>
             <div class="main-image d-flex flex-wrap">

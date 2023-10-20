@@ -1,6 +1,6 @@
 <h2>Inscription</h2>
 
-<form method="post" action="index.php?action=register">
+<form method="post" action="/Ballers/register">
     <div class="form-group mt-2">
         <label for="new-username">Nouveau nom d'utilisateur :</label>
         <input type="text" name="new-username" id="new-username" class="form-control" required>
@@ -19,4 +19,4 @@
     <button type="submit" class="btn btn-success mt-2">S'inscrire</button>
 </form>
 
-<p>Déjà un compte ? <a href="index.php?action=login">Se connecter</a></p>
+<p>Déjà un compte ? <a href="/Ballers/login">Se connecter</a></p>

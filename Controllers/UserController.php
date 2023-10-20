@@ -23,7 +23,7 @@ class UserController {
                 $this->userManager->createUser($username, $password, $email);
 
                 // Rediriger vers la page de connexion
-                header("Location: index.php?action=login");
+                header("Location: /login");
             }
         } else {
             // Afficher le formulaire d'inscription
@@ -48,7 +48,7 @@ class UserController {
                 $_SESSION['userIsLoggedIn'] = true;
                 $_SESSION['userRole'] = $userRole;
                
-                header("Location: index.php");
+                header("Location: /Ballers");
             } else {
                 // Gérer l'erreur d'authentification invalide
                 // Vous pouvez rediriger vers une page d'erreur de connexion
@@ -63,6 +63,6 @@ class UserController {
     public function logout() {
         session_unset(); 
         session_destroy();  
-        header("Location: index.php");
+        header("Location: /Ballers");
     }
 }

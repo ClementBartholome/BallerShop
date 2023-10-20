@@ -17,7 +17,7 @@ if (deleteProductButton) {
     event.preventDefault();
     const productId = this.getAttribute("data-product-id");
     if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
-      window.location.href = "index.php?action=delete&id=" + productId;
+      window.location.href = "/Ballers/delete?id=" + productId;
     }
   });
 }

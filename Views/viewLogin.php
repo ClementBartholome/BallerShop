@@ -1,6 +1,6 @@
 <h2>Connexion</h2>
 
-<form method="post" action="index.php?action=login">
+<form method="post" action="/Ballers/login">
     <div class="form-group mt-2">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" name="username" id="username" class="form-control" required>
@@ -19,4 +19,4 @@
     <button type="submit" class="btn btn-primary mt-2">Se connecter</button>
 </form>
 
-<p>Pas encore de compte ? <a href="index.php?action=register">S'inscrire</a></p>
+<p>Pas encore de compte ? <a href="/Ballers/register">S'inscrire</a></p>

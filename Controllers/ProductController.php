@@ -20,7 +20,7 @@ class ProductController {
             $view = new View('AddProduct');
             $view->generate(['title' => 'Ajouter un Produit']);
         } else {
-            header("Location: index.php?action=access-denied");
+            header("Location: /Ballers/access-denied");
         }
     }
 
@@ -44,7 +44,7 @@ class ProductController {
 
             // Vérifier et traiter les images téléchargées
             if (move_uploaded_file($image1['tmp_name'], $uploadDirectory . $image1['name'])) {
-                $productData['image1'] =$image1['name'];
+                $productData['image1'] = $image1['name'];
             }
             if (move_uploaded_file($image2['tmp_name'], $uploadDirectory . $image2['name'])) {
                 $productData['image2'] = $image2['name'];
@@ -54,7 +54,7 @@ class ProductController {
             }
 
             $this->productManager->addProduct($productData);
-            header("Location: index.php");
+            header("Location: /Ballers");
         } 
     }
 
@@ -92,7 +92,7 @@ class ProductController {
             $this->productManager->updateProduct($id, $productData);
 
             // Rediriger vers la page de liste des produits
-            header("Location: index.php");
+            header("Location: /Ballers");
         } else {
             // Récupérer les informations du produit à éditer
             $product = $this->productManager->getProductById($id);
@@ -107,7 +107,7 @@ class ProductController {
         $this->productManager->deleteProduct($id);
 
         // Rediriger vers la page de liste des produits
-        header("Location: index.php");
+        header("Location: /Ballers");
     }
 
     
