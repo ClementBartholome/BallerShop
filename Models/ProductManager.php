@@ -22,7 +22,7 @@ class ProductManager extends Model {
 
     public function updateProduct($id, $productData) {
         $query = "UPDATE products SET name = :name, description = :description, price = :price, 
-                  image1 = :image1, image2 = :image2, image3 = :image3, category = :category 
+                 category = :category 
                   WHERE id = :id";
         $productData[':id'] = $id;
         $this->executeRequest($query, $productData);

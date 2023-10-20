@@ -31,6 +31,11 @@ switch ($request) {
             echo "Action non valide.";
         }
         break;
+    
+    case '/edit-product-form':
+        $controller = new ProductController();
+        $controller->showEditForm($_GET['id']);
+        break;
 
     case '/edit':
         if (isset($_GET['id'])) {
