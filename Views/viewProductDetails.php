@@ -1,4 +1,5 @@
 <div class="container">
+    <p class="breadcrumb"><?= $product['category'] ?> > <?= $product['name'] ?></p>
     <div class="card mb-4">
         <div class="card-body">
             <div class="d-flex">
@@ -19,11 +20,11 @@
                     <button class="btn btn-primary mt-auto">Ajouter au panier</button>
                 </div>
             </div>
-                <div class="sub-image mt-4 text-center">
-                    <img src="<?= 'products_images/' . $product['image1'] ?>" alt="Image 1" class="card-img-top" style="max-width: 150px">
-                    <img src="<?= 'products_images/' . $product['image2'] ?>" alt="Image 2" class="card-img-top" style="max-width: 150px">
-                    <img src="<?= 'products_images/' . $product['image3'] ?>" alt="Image 3" class="card-img-top" style="max-width: 150px">
-                </div>
+            <div class="sub-image mt-4 text-center">
+                <img src="<?= 'products_images/' . $product['image1'] ?>" alt="Image 1" class="card-img-top" style="max-width: 150px">
+                <img src="<?= 'products_images/' . $product['image2'] ?>" alt="Image 2" class="card-img-top" style="max-width: 150px">
+                <img src="<?= 'products_images/' . $product['image3'] ?>" alt="Image 3" class="card-img-top" style="max-width: 150px">
+            </div>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ $request = str_replace('/Ballers', '', $request);
 switch ($request) {
     case '/':
         $controller = new ProductController();
-        $controller->listProducts();
+        $controller->listCategoriesAndProducts();
         break;
 
     case '/add-product-form':

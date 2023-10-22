@@ -2,19 +2,21 @@
 
 class ProductController {
     private $productManager;
+    private $categoriesManager;
 
     public function __construct() {
         $this->productManager = new ProductManager();
+        $this->categoryManager = new CategoryManager();
     }
 
-    public function listProducts() {
-        // Get the list of products
+    public function listCategoriesAndProducts() {
+        $categories = $this->categoryManager->getCategories();
         $products = $this->productManager->getProducts();
-
-        // Generate the view for the home page with product data
+        
         $view = new View('Home');
-        $view->generate(['title' => 'List of Products', 'products' => $products]);
+        $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'products' => $products]);
     }
+    
 
     public function showAddForm() {
         // Check if the user is logged in as an admin
