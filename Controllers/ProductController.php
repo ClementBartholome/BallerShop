@@ -9,12 +9,14 @@ class ProductController {
         $this->categoryManager = new CategoryManager();
     }
 
+
     public function listCategoriesAndProducts() {
         $categories = $this->categoryManager->getCategories();
         $productsData = $this->productManager->getProducts(); 
 
         $products = []; 
         foreach ($productsData as $productData) {
+            // Create a ProductModel object for each product
             $product = new ProductModel(
                 $productData['id'],
                 $productData['name'],
@@ -28,14 +30,18 @@ class ProductController {
             $products[] = $product;
         }
 
+        // Generate the view for the home page
         $view = new View('Home');
-        $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'products' => $products]);
+        $view->generate(['title' => 'All our products', 'categories' => $categories, 'products' => $products]);
     }
+
 
     public function listProductsByCategory($category) {
         $categories = $this->categoryManager->getCategories();
         $productsData = $this->productManager->getProductsByCategory($category);
+        $products = [];
         foreach ($productsData as $productData) {
+            // Create a ProductModel object for each product
             $product = new ProductModel(
                 $productData['id'],
                 $productData['name'],
@@ -49,10 +55,11 @@ class ProductController {
             $products[] = $product;
         }
 
+        // Generate the view for the home page with category filter
         $view = new View('Home');
-        $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'category' => $category, 'products' => $products]);
+        $view->generate(['title' => 'All our products', 'categories' => $categories, 'category' => $category, 'products' => $products]);
     }
-    
+
 
     public function showAddForm() {
         // Check if the user is logged in as an admin
@@ -65,6 +72,7 @@ class ProductController {
             header("Location: /Ballers/access-denied");
         }
     }
+
 
     public function addProduct() {
         // Check if the request method is POST
@@ -96,30 +104,27 @@ class ProductController {
                 $productData['image3'] = $image3['name'];
             }
 
-          
+            // Add the product to the database
             $this->productManager->addProduct($productData);
 
+            // Get or add the category and associate it with the product
             $categoryID = $this->categoryManager->getCategoryIdByName($productData['category']);
-
             if (!$categoryID) {
-         
                 $categoryID = $this->categoryManager->addCategory($productData['category']);
             }
-
             $productID = $this->productManager->getProductIdByName($productData['name']);
-
-         
             $this->categoryManager->associateProductWithCategory($productID, $categoryID);
 
-           
+            // Redirect to the home page
             header("Location: /Ballers");
         }
     }
 
+  
     public function showProductDetails($id) {
         // Get product information by ID
         $product = $this->productManager->getProductById($id);
-    
+
         // Check if the product exists
         if ($product) {
             $productModel = new ProductModel(
@@ -132,17 +137,20 @@ class ProductController {
                 $product['image3'],
                 $product['category']
             );
+
             // Load the view for product details with product data
             $view = new View('ProductDetails');
             $view->generate(['title' => 'Product Details', 'product' => $productModel]);
         }
     }
-    
+
+ 
     public function showEditForm($id) {
         // Check if the user is logged in as an admin
         if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userRole'] === 'admin') {
             // Get information about the product to edit
             $product = $this->productManager->getProductById($id);
+
             // Check if the product exists
             if ($product) {
                 $productModel = new ProductModel(
@@ -155,17 +163,18 @@ class ProductController {
                     $product['image3'],
                     $product['category']
                 );
+
                 // Generate the view for editing a product
                 $view = new View('EditProduct');
                 $view->generate(['title' => 'Edit Product', 'product' => $productModel]);
-            }         
+            }
         } else {
             // Redirect to the access-denied page if not an admin
             header("Location: /Ballers/access-denied");
         }
     }
-    
 
+    
     public function editProduct($id) {
         // Check if the edit form has been submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -182,15 +191,10 @@ class ProductController {
 
             // Redirect to the list of products page
             header("Location: /Ballers");
-        } else {
-            // Get information about the product to edit
-            $product = $this->productManager->getProductById($id);
-
-            // Display the product edit form with pre-filled information (you can use a view for this)
-            // For example: include 'View/edit_product_form.php';
-        }
+        } 
     }
 
+  
     public function deleteProduct($id) {
         // Get the file names of images associated with the product
         $product = $this->productManager->getProductById($id);

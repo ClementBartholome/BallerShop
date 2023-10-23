@@ -16,13 +16,13 @@ abstract class Model {
     }
 
     private static function getBdd(): PDO {
-        // Vérifiez si la connexion a déjà été créée
+        // Check if the connection to the database has already been established
         if (self::$bdd === null) {
-            // Récupérez les paramètres de configuration de la base de données
+            // Get the connection settings from the configuration file
             $dsn = Configuration::get("dsn");
             $login = Configuration::get("login");
             $password = Configuration::get("password");
-            // Créez la connexion à la base de données
+            // Create a connection to the database
             self::$bdd = new PDO($dsn, $login, $password, 
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }

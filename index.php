@@ -41,15 +41,15 @@ switch ($request) {
         }
         break;
     
-        case '/remove-from-cart':
-            if (isset($_POST['cart_id'])) {
-                $controller = new CartController();
-                $cart_id = (int)$_POST['cart_id'];
-                $controller->removeProductFromCart($cart_id);
-            } else {
-                echo "Action non valide.";
-            }
-            break;
+    case '/remove-from-cart':
+        if (isset($_POST['cart_id'])) {
+            $controller = new CartController();
+            $cart_id = (int)$_POST['cart_id'];
+            $controller->removeProductFromCart($cart_id);
+        } else {
+            echo "Action non valide.";
+        }
+        break;
         
         
 

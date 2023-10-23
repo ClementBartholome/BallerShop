@@ -37,7 +37,7 @@ class CartController {
         $totalCartPrice = 0;
     
         foreach ($cartItems as &$item) {
-        
+            // Calculate the total price for each item in the cart
             $item['total_price'] = $item['product_price'] * $item['quantity'];
             $totalCartPrice += $item['total_price'];
         }
@@ -46,18 +46,17 @@ class CartController {
     }
 
     public function removeProductFromCart($cart_id) {
+        // Remove a product from the cart
         $this->cartManager->removeProductFromCart($cart_id);
         header("Location: /Ballers/cart");
     }
     
-    
-    
-
     public function getUserCart($user_id) {
         $userCart = $this->cartManager->getUserCart($user_id);
         $cartItems = [];
     
         foreach ($userCart as $cartItem) {
+            // Get product details for each item in the cart
             $productDetails = $this->getProductDetails($cartItem['product_id']);
             $totalPrice = $productDetails['price'] * $cartItem['quantity']; 
     
@@ -70,14 +69,12 @@ class CartController {
             ];
         }
 
-        // var_dump($cartItems);
-        // die();
-
         $totalCartPrice = $this->calculateCartTotals($cartItems);
     
+        // Generate the cart view
         $view = new View('Cart');
         $view->generate([
-            'title' => 'Votre panier',
+            'title' => 'Your Cart',
             'cartItems' => $cartItems,
             'totalCartPrice' => $totalCartPrice
         ]);

@@ -1,5 +1,9 @@
 <h2>Connexion</h2>
 
+<?php if(isset($errorMessage)): ?>
+    <div class="alert alert-danger"><?= $errorMessage ?></div>
+<?php endif ?>
+
 <form method="post" action="/Ballers/login">
     <div class="form-group mt-2">
         <label for="username">Nom d'utilisateur :</label>

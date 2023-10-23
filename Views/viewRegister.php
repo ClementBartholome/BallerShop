@@ -1,5 +1,9 @@
 <h2>Inscription</h2>
 
+<?php if(isset($errorMessage)): ?>
+    <div class="alert alert-danger"><?= $errorMessage ?></div>
+<?php endif ?>
+
 <form method="post" action="/Ballers/register">
     <div class="form-group mt-2">
         <label for="new-username">Nouveau nom d'utilisateur :</label>
