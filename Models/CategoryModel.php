@@ -6,7 +6,6 @@ class CategoryModel {
     private $name;
     private $image;
 
-    // Constructeur
     public function __construct($id, $name, $image) {
         $this->id = $id;
         $this->name = $name;
