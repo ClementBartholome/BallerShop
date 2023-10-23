@@ -19,7 +19,7 @@
 
     <div class="form-group mt-2 ">
         <label for="price">Prix:</label>
-        <input type="number" name="price" id="price" class="form-control" required>
+        <input type="text" name="price" id="price" class="form-control" required>
         <div class="invalid-feedback">
             Veuillez saisir le prix du produit.
         </div>
