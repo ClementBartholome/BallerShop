@@ -1,5 +1,9 @@
 <section class="mt-4 mb-4">
-    <h2 class="text-center">Tous nos produits</h2>
+    <?php if (isset($category)) : ?>
+            <h2 class="text-center"><?= $category ?></h2>
+        <?php else : ?>
+            <h2 class="text-center">Tous nos produits</h2>
+    <?php endif; ?>
     <?php if(empty($products)): ?>
         <div class="alert alert-info">Aucun produit n'a été trouvé.</div>
     <?php endif; ?>
@@ -11,7 +15,7 @@
                         <img src="<?= 'products_images/' . $product['image1'] ?>" alt="Image 1" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><?= $product['name'] ?></h5>
-                            <p class="card-text">Prix : <?= $product['price'] ?> €</p>
+                            <p class="card-text">Prix : <?= number_format($product['price'], 2, ',', ' ') ?> €</p>
                             <p class="card-text">Catégorie : <?= $product['category'] ?></p>
                         </div>
                     </a>
@@ -25,7 +29,7 @@
         <?php foreach ($categories as $category): ?>
             <div class="col-md-3 col-lg-3 mb-4">
                 <div class="card">
-                    <a href="/Ballers/products-by-category?category=<?= $category['name'] ?>">
+                    <a href="/Ballers/products?category=<?= $category['name'] ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?= $category['name'] ?></h5>
                             <img src="<?= 'products_images/' . $category['image'] ?>" class="card-img-top" alt="Image 1">

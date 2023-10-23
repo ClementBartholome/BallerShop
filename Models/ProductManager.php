@@ -13,6 +13,12 @@ class ProductManager extends Model {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getProductsByCategory($category) {
+        $query = "SELECT * FROM products WHERE category = :category";
+        $result = $this->executeRequest($query, [':category' => $category]);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function addProduct($productData) {
         $query = "INSERT INTO products (name, description, price, image1, image2, image3, category) 
                   VALUES (:name, :description, :price, :image1, :image2, :image3, :category)";

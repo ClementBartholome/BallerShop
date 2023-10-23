@@ -2,7 +2,7 @@
 
 class ProductController {
     private $productManager;
-    private $categoriesManager;
+    private $categoryManager;
 
     public function __construct() {
         $this->productManager = new ProductManager();
@@ -15,6 +15,14 @@ class ProductController {
         
         $view = new View('Home');
         $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'products' => $products]);
+    }
+
+    public function listProductsByCategory($category) {
+        $categories = $this->categoryManager->getCategories();
+        $products = $this->productManager->getProductsByCategory($category);
+
+        $view = new View('Home');
+        $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'category' => $category, 'products' => $products]);
     }
     
 
