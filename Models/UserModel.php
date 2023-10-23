@@ -1,6 +1,6 @@
 <?php
 
-class User extends Model {
+class UserModel extends Model {
     private $id;
     private $username;
     private $password;
