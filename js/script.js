@@ -21,3 +21,24 @@ if (deleteProductButton) {
     }
   });
 }
+
+let productAddedMessage = document.getElementById("productAddedMessage");
+let addToCartForm = document.querySelector(
+  'form[action="/Ballers/add-to-cart"]'
+);
+
+addToCartForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  productAddedMessage.style.display = "block";
+
+  const formData = new FormData(addToCartForm);
+
+  axios
+    .post("/Ballers/add-to-cart", formData)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+});
