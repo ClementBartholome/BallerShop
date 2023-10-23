@@ -22,6 +22,16 @@ switch ($request) {
         $controller = new ProductController();
         $controller->addProduct();
         break;
+    
+    // case '/add-to-cart':
+    //     $controller = new CartController();
+    //     $productData = [
+    //         'product_id' => $_POST['product_id'],
+    //         'user_id' => $_SESSION['userId'],
+    //         'quantity' => $_POST['quantity']
+    //     ];
+    //     $controller->addProductToCart($productData);
+    //     break;
 
     case '/product-details':
         if (isset($_GET['id'])) {
