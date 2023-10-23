@@ -2,19 +2,19 @@
     <?php if (isset($category)) : ?>
             <h2 class="text-center"><?= $category ?></h2>
         <?php else : ?>
-            <h2 class="text-center">Tous nos produits</h2>
+            <h2 class="text-center">Nos derniers produits</h2>
     <?php endif; ?>
     <?php if(empty($products)): ?>
         <div class="alert alert-info">Aucun produit n'a été trouvé.</div>
     <?php endif; ?>
     <div class="row mb-4">
         <?php foreach ($products as $product): ?>
-            <div class="col-md-6 col-lg-4 md-4 mt-4">
+            <div class="col-md-6 col-lg-3 md-4 mt-4">
                 <div class="card">
                     <a href="/Ballers/product-details?id=<?= $product->getId() ?>"> 
                         <img src="<?= 'products_images/' . $product->getImage1() ?>" alt="Image 1" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $product->getName() ?></h5>
+                            <h3 class="card-title fs-6 text-truncate"><?= $product->getName() ?></h3>
                             <p class="card-text"><?= number_format($product->getPrice(), 2, ',', ' ') ?> €</p> 
                             <p class="card-text"><?= $product->getCategory() ?></p>
                         </div>
@@ -26,9 +26,9 @@
 
 
     <h2 class="text-center">Filtrer par catégorie</h2>
-    <div class="row">
+    <div class="row justify-content-center">
         <?php foreach ($categories as $category): ?>
-            <div class="col-md-3 col-lg-3 mb-4">
+            <div class="col-md-3 col-lg-2 mb-4">
                 <div class="card">
                     <a href="/Ballers/products?category=<?= $category['name'] ?>">
                         <div class="card-body">
