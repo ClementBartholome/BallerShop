@@ -41,4 +41,15 @@ class UserManager extends Model {
         }
         return null; 
     }
+
+    public function getUserId($username) {
+        $sql = "SELECT id FROM users WHERE username = :username";
+        $params = [':username' => $username];
+        $result = $this->executeRequest($sql, $params);
+        if ($result->rowCount() === 1) {
+            $userData = $result->fetch(PDO::FETCH_ASSOC);
+            return $userData['id'];
+        }
+        return null;
+    }
 }
