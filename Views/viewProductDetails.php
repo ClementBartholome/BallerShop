@@ -36,6 +36,9 @@
                             <button type="submit" class="btn btn-primary mt-3">Ajouter au panier</button>
                         </div>
                     </form>
+                    <div id="productAddedMessage" style="display: none" class="alert alert-success mt-3">
+                        Produit ajouté au panier!
+                    </div>
                 </div>
             </div>
             <div class="sub-image mt-4 text-center">
