@@ -13,6 +13,13 @@ class ProductManager extends Model {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getProductIdByName($name) {
+        $query = "SELECT id FROM products WHERE name = :name";
+        $result = $this->executeRequest($query, [':name' => $name]);
+        $product = $result->fetch(PDO::FETCH_ASSOC);
+        return $product['id'];
+    }
+
     public function getProductsByCategory($category) {
         $query = "SELECT * FROM products WHERE category = :category";
         $result = $this->executeRequest($query, [':category' => $category]);
@@ -23,7 +30,6 @@ class ProductManager extends Model {
         $query = "INSERT INTO products (name, description, price, image1, image2, image3, category) 
                   VALUES (:name, :description, :price, :image1, :image2, :image3, :category)";
         $this->executeRequest($query, $productData);
-
     }
 
     public function updateProduct($id, $productData) {

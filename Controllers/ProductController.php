@@ -11,15 +11,43 @@ class ProductController {
 
     public function listCategoriesAndProducts() {
         $categories = $this->categoryManager->getCategories();
-        $products = $this->productManager->getProducts();
-        
+        $productsData = $this->productManager->getProducts(); 
+
+        $products = []; 
+        foreach ($productsData as $productData) {
+            $product = new ProductModel(
+                $productData['id'],
+                $productData['name'],
+                $productData['description'],
+                $productData['price'],
+                $productData['image1'],
+                $productData['image2'],
+                $productData['image3'],
+                $productData['category']
+            );
+            $products[] = $product;
+        }
+
         $view = new View('Home');
         $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'products' => $products]);
     }
 
     public function listProductsByCategory($category) {
         $categories = $this->categoryManager->getCategories();
-        $products = $this->productManager->getProductsByCategory($category);
+        $productsData = $this->productManager->getProductsByCategory($category);
+        foreach ($productsData as $productData) {
+            $product = new ProductModel(
+                $productData['id'],
+                $productData['name'],
+                $productData['description'],
+                $productData['price'],
+                $productData['image1'],
+                $productData['image2'],
+                $productData['image3'],
+                $productData['category']
+            );
+            $products[] = $product;
+        }
 
         $view = new View('Home');
         $view->generate(['title' => 'Tous nos produits', 'categories' => $categories, 'category' => $category, 'products' => $products]);
@@ -68,26 +96,45 @@ class ProductController {
                 $productData['image3'] = $image3['name'];
             }
 
-            // Add the product with data to the database
+          
             $this->productManager->addProduct($productData);
 
-            // Redirect to the list of products page
+            $categoryID = $this->categoryManager->getCategoryIdByName($productData['category']);
+
+            if (!$categoryID) {
+         
+                $categoryID = $this->categoryManager->addCategory($productData['category']);
+            }
+
+            $productID = $this->productManager->getProductIdByName($productData['name']);
+
+         
+            $this->categoryManager->associateProductWithCategory($productID, $categoryID);
+
+           
             header("Location: /Ballers");
-        } 
+        }
     }
 
     public function showProductDetails($id) {
         // Get product information by ID
         $product = $this->productManager->getProductById($id);
-
+    
         // Check if the product exists
         if ($product) {
+            $productModel = new ProductModel(
+                $product['id'],
+                $product['name'],
+                $product['description'],
+                $product['price'],
+                $product['image1'],
+                $product['image2'],
+                $product['image3'],
+                $product['category']
+            );
             // Load the view for product details with product data
             $view = new View('ProductDetails');
-            $view->generate(['title' => 'Product Details', 'product' => $product]);
-        } else {
-            // Handle the case where the product doesn't exist, e.g., redirect to an error page.
-            // You can also display an error message to the user.
+            $view->generate(['title' => 'Product Details', 'product' => $productModel]);
         }
     }
     
@@ -98,18 +145,26 @@ class ProductController {
             $product = $this->productManager->getProductById($id);
             // Check if the product exists
             if ($product) {
+                $productModel = new ProductModel(
+                    $product['id'],
+                    $product['name'],
+                    $product['description'],
+                    $product['price'],
+                    $product['image1'],
+                    $product['image2'],
+                    $product['image3'],
+                    $product['category']
+                );
                 // Generate the view for editing a product
                 $view = new View('EditProduct');
-                $view->generate(['title' => 'Edit Product', 'product' => $product]);
-            } else {
-                // Handle the case where the product doesn't exist, e.g., redirect to an error page.
-                // You can also display an error message to the user.
-            }           
+                $view->generate(['title' => 'Edit Product', 'product' => $productModel]);
+            }         
         } else {
             // Redirect to the access-denied page if not an admin
             header("Location: /Ballers/access-denied");
         }
     }
+    
 
     public function editProduct($id) {
         // Check if the edit form has been submitted

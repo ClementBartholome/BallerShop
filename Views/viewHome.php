@@ -11,18 +11,19 @@
         <?php foreach ($products as $product): ?>
             <div class="col-md-6 col-lg-4 md-4 mt-4">
                 <div class="card">
-                <a href="/Ballers/product-details?id=<?= $product['id'] ?>">
-                        <img src="<?= 'products_images/' . $product['image1'] ?>" alt="Image 1" class="card-img-top">
+                    <a href="/Ballers/product-details?id=<?= $product->getId() ?>"> 
+                        <img src="<?= 'products_images/' . $product->getImage1() ?>" alt="Image 1" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $product['name'] ?></h5>
-                            <p class="card-text">Prix : <?= number_format($product['price'], 2, ',', ' ') ?> €</p>
-                            <p class="card-text">Catégorie : <?= $product['category'] ?></p>
+                            <h5 class="card-title"><?= $product->getName() ?></h5>
+                            <p class="card-text"><?= number_format($product->getPrice(), 2, ',', ' ') ?> €</p> 
+                            <p class="card-text"><?= $product->getCategory() ?></p>
                         </div>
                     </a>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
 
     <h2 class="text-center">Filtrer par catégorie</h2>
     <div class="row">
