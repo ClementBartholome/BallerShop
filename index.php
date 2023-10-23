@@ -23,15 +23,35 @@ switch ($request) {
         $controller->addProduct();
         break;
     
-    // case '/add-to-cart':
-    //     $controller = new CartController();
-    //     $productData = [
-    //         'product_id' => $_POST['product_id'],
-    //         'user_id' => $_SESSION['userId'],
-    //         'quantity' => $_POST['quantity']
-    //     ];
-    //     $controller->addProductToCart($productData);
-    //     break;
+    case '/cart':
+        $controller = new CartController();
+        $user_id = $_SESSION['user_id'];
+        $controller->getUserCart($user_id);
+        break;
+    
+    case '/add-to-cart':
+        if (isset($_POST['product_id']) && isset($_POST['quantity'])) {
+            $controller = new CartController(); 
+            $product_id = (int)$_POST['product_id'];
+            $quantity = (int)$_POST['quantity']; 
+            $user_id = $_SESSION['user_id'];
+            $controller->addProductToCart($product_id, $user_id, $quantity); 
+        } else {
+            echo "Action non valide.";
+        }
+        break;
+    
+        case '/remove-from-cart':
+            if (isset($_POST['cart_id'])) {
+                $controller = new CartController();
+                $cart_id = (int)$_POST['cart_id'];
+                $controller->removeProductFromCart($cart_id);
+            } else {
+                echo "Action non valide.";
+            }
+            break;
+        
+        
 
     case '/product-details':
         if (isset($_GET['id'])) {
