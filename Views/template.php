@@ -9,7 +9,9 @@
 </head>
 <body class="container d-flex flex-column vh-100">
     <header class="py-4">
-        <h1><i class="fas fa-basketball-ball"></i> Ballers Shop</h1>
+        <a class="navbar-brand" href="/Ballers">
+            <h1><i class="fas fa-basketball-ball"></i> Ballers Shop</h1>
+        </a>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/Ballers">Accueil</a>
@@ -17,22 +19,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse col-sm-12 col-md-6" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) { ?>
-                        <?php if ($_SESSION['userRole'] === 'admin') { ?>
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/Ballers/cart">
+                        <img src="images/basket.svg" alt="Panier" width="16" >
+                        Panier
+                    </a>
+                    </li>
+                        <?php if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) { ?>
                             <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/Ballers/add-product-form">Ajouter un produit</a>
+                                <a class="nav-link" href="/Ballers/logout"><i class="fas fa-user"></i> Se Déconnecter</a>
                             </li>
-                        <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Ballers/logout">Se Déconnecter</a>
-                        </li>
-                    <?php } else { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Ballers/login">Se Connecter</a>
-                        </li>
-                    <?php } ?>
-                    </ul>
+                            <?php } else { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Ballers/login"><i class="fas fa-user"></i> Se Connecter</a>
+                                </li>
+                                <?php } ?>
+                                <?php if (isset($_SESSION['userRole']) && $_SESSION['userRole'] === 'admin') { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" aria-current="page" href="/Ballers/add-product-form">Ajouter un produit</a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
                 </div>
             </div>
         </nav>
@@ -55,10 +63,10 @@
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Nos Produits</h5>
                     <ul class="list-unstyled">
-                        <li><a class="text-white" href="#">Catégorie 1</a></li>
-                        <li><a class="text-white" href="#">Catégorie 2</a></li>
-                        <li><a class="text-white" href="#">Catégorie 3</a></li>
-                        <li><a class="text-white" href="#">Catégorie 4</a></li>
+                        <li><a class="text-white" href="/Ballers/products?category=Vêtements">Vêtements</a></li>
+                        <li><a class="text-white" href="/Ballers/products?category=Chaussures">Chaussures</a></li>
+                        <li><a class="text-white" href="/Ballers/products?category=Accessoires">Accessoires</a></li>
+                        <li><a class="text-white" href="/Ballers/products?category=Produits Dérivés">Produits Dérivés</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
