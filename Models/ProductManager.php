@@ -47,8 +47,17 @@ class ProductManager extends Model {
     }
 
     public function deleteProduct($id) {
+        // Delete product from categories_products junction table
+        $this->removeProductFromCategories($id);
+    
+        // Delete product from products table
         $query = "DELETE FROM products WHERE id = :id";
         $this->executeRequest($query, [':id' => $id]);
+    }
+    
+    public function removeProductFromCategories($productId) {
+        $query = "DELETE FROM categories_products WHERE product_id = :product_id";
+        $this->executeRequest($query, [':product_id' => $productId]);
     }
 }
 

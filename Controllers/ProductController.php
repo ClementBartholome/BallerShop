@@ -1,14 +1,13 @@
 <?php
 
 class ProductController {
-    private $productManager;
-    private $categoryManager;
+    private ProductManager $productManager;
+    private CategoryManager $categoryManager;
 
     public function __construct() {
         $this->productManager = new ProductManager();
         $this->categoryManager = new CategoryManager();
     }
-
 
     public function listCategoriesAndProducts() {
         $categories = $this->categoryManager->getCategories();
@@ -35,8 +34,7 @@ class ProductController {
         $view->generate(['title' => 'All our products', 'categories' => $categories, 'products' => $products]);
     }
 
-
-    public function listProductsByCategory($category) {
+    public function listProductsByCategory(string $category) {
         $categories = $this->categoryManager->getCategories();
         $productsData = $this->productManager->getProductsByCategory($category);
         $products = [];
@@ -60,7 +58,6 @@ class ProductController {
         $view->generate(['title' => 'All our products', 'categories' => $categories, 'category' => $category, 'products' => $products]);
     }
 
-
     public function showAddForm() {
         // Check if the user is logged in as an admin
         if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userRole'] === 'admin') {
@@ -72,7 +69,6 @@ class ProductController {
             header("Location: /Ballers/access-denied");
         }
     }
-
 
     public function addProduct() {
         // Check if the request method is POST
@@ -120,8 +116,7 @@ class ProductController {
         }
     }
 
-  
-    public function showProductDetails($id) {
+    public function showProductDetails(int $id) {
         // Get product information by ID
         $product = $this->productManager->getProductById($id);
 
@@ -144,8 +139,7 @@ class ProductController {
         }
     }
 
- 
-    public function showEditForm($id) {
+    public function showEditForm(int $id) {
         // Check if the user is logged in as an admin
         if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userRole'] === 'admin') {
             // Get information about the product to edit
@@ -174,8 +168,7 @@ class ProductController {
         }
     }
 
-    
-    public function editProduct($id) {
+    public function editProduct(int $id) {
         // Check if the edit form has been submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Get the form data
@@ -194,8 +187,7 @@ class ProductController {
         } 
     }
 
-  
-    public function deleteProduct($id) {
+    public function deleteProduct(int $id) {
         // Get the file names of images associated with the product
         $product = $this->productManager->getProductById($id);
         $image1 = $product['image1'];
@@ -221,3 +213,4 @@ class ProductController {
         header("Location: /Ballers");
     }
 }
+
