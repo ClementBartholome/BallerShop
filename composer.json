@@ -1,0 +1,17 @@
+{
+    "name": "clementoss/ballers",
+    "require": {
+        "phpunit/phpunit": "^10.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Clementoss\\Ballers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Clément Bartholomé",
+            "email": "clementoss@gmail.com"
+        }
+    ]
+}
