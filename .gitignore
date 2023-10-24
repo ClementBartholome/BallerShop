@@ -4,3 +4,4 @@ prod.ini
 products_images
 /images
 /node_modules
+/vendor/
