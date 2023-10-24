@@ -190,7 +190,7 @@ class ProductController {
             $this->productManager->updateProduct($id, $productData);
 
             // Redirect to the list of products page
-            header("Location: /Ballers");
+            header("Location: /Ballers/product-details?id=$id");
         } 
     }
 
