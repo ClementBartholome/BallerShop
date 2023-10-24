@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="breadcrumb"><?= $product->getCategory() ?> > <?= $product->getName() ?></p>
+    <p class="breadcrumb"><a href="/Ballers/products?category=<?= $product->getCategory() ?>"><?= $product->getCategory() ?> > </a> <?= $product->getName() ?></p>
     <div class="card mb-4">
         <div class="card-body">
             <div class="d-flex flex-wrap">
