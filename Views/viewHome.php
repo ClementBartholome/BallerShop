@@ -7,9 +7,11 @@
     <?php if(empty($products)): ?>
         <div class="alert alert-info">Aucun produit n'a été trouvé.</div>
     <?php endif; ?>
-    <div class="row mb-4">
+
+    <input type="text" class="form-control" id="search-bar" placeholder="Rechercher des produits..." aria-label="Rechercher des produits" aria-describedby="search-button">
+    <div class="row mb-4" id="products-container">
         <?php foreach ($products as $product): ?>
-            <div class="col-md-6 col-lg-3 md-4 mt-4">
+            <div class="col-md-6 col-lg-3 md-4 mt-4 product">
                 <div class="card">
                     <a href="/Ballers/product-details?id=<?= $product->getId() ?>"> 
                         <img src="<?= 'products_images/' . $product->getImage1() ?>" alt="Image 1" class="card-img-top">
@@ -24,11 +26,12 @@
         <?php endforeach; ?>
     </div>
 
+    <p id="no-results-message" class="text-center alert alert-info" style="display: none;">Aucun produit correspondant à la recherche</p>
 
     <h2 class="text-center">Filtrer par catégorie</h2>
     <div class="row justify-content-center">
         <?php foreach ($categories as $category): ?>
-            <div class="col-md-3 col-lg-2 mb-4">
+            <div class="col-md-3 col-lg-2 mb-4 category-reveal">
                 <div class="card">
                     <a href="/Ballers/products?category=<?= $category['name'] ?>">
                         <div class="card-body">

@@ -1,5 +1,61 @@
-let mainImage = document.querySelector(".main-image img");
+// Scroll Reveal
 
+// ScrollReveal().reveal(".product-reveal", {
+//   duration: 1000,
+//   origin: "bottom",
+//   distance: "50px",
+//   delay: 200,
+//   easing: "cubic-bezier(0.5, 0, 0, 1)", // Acceleration and deceleration
+// });
+
+ScrollReveal().reveal(".category-reveal", {
+  duration: 1000,
+  origin: "bottom",
+  distance: "50px",
+  delay: 200,
+  easing: "cubic-bezier(0.5, 0, 0, 1)", // Acceleration and deceleration
+});
+
+// Search function
+
+const searchInput = document.getElementById("search-bar");
+const productsContainer = document.getElementById("products-container");
+let productItems = "";
+
+if (productsContainer) {
+  productItems = productsContainer.querySelectorAll(".product");
+}
+const noResultsMessage = document.getElementById("no-results-message");
+
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    let anyProductFound = false;
+
+    productItems.forEach(function (productItem) {
+      const productName = productItem
+        .querySelector(".card-title")
+        .textContent.toLowerCase();
+
+      if (productName.includes(searchTerm)) {
+        productItem.style.display = "block";
+        anyProductFound = true;
+      } else {
+        productItem.style.display = "none";
+      }
+    });
+
+    if (anyProductFound) {
+      noResultsMessage.style.display = "none";
+    } else {
+      noResultsMessage.style.display = "block";
+    }
+  });
+}
+
+// Product page functions
+
+let mainImage = document.querySelector(".main-image img");
 let subImages = document.querySelectorAll(".sub-image img");
 
 subImages.forEach((image) => {
@@ -27,18 +83,20 @@ let addToCartForm = document.querySelector(
   'form[action="/Ballers/add-to-cart"]'
 );
 
-addToCartForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  productAddedMessage.style.display = "block";
+if (addToCartForm) {
+  addToCartForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    productAddedMessage.style.display = "block";
 
-  const formData = new FormData(addToCartForm);
+    const formData = new FormData(addToCartForm);
 
-  axios
-    .post("/Ballers/add-to-cart", formData)
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-});
+    axios
+      .post("/Ballers/add-to-cart", formData)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
+}
