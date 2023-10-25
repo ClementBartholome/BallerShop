@@ -12,9 +12,6 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(empty($cartItems)):?>
-                    
-                <?php endif; ?>
                 <?php foreach ($cartItems as $item): ?>
                     <tr>
                         <td><?= $item['product_name'] ?></td>

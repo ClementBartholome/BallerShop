@@ -32,8 +32,8 @@ switch ($request) {
     case '/add-to-cart':
         if (isset($_POST['product_id']) && isset($_POST['quantity'])) {
             $controller = new CartController(); 
-            $product_id = (int)$_POST['product_id'];
-            $quantity = (int)$_POST['quantity']; 
+            $product_id = $_POST['product_id'];
+            $quantity = $_POST['quantity']; 
             $user_id = $_SESSION['user_id'];
             $controller->addProductToCart($product_id, $user_id, $quantity); 
         } else {
@@ -44,7 +44,7 @@ switch ($request) {
     case '/remove-from-cart':
         if (isset($_POST['cart_id'])) {
             $controller = new CartController();
-            $cart_id = (int)$_POST['cart_id'];
+            $cart_id = $_POST['cart_id'];
             $controller->removeProductFromCart($cart_id);
         } else {
             echo "Action non valide.";
