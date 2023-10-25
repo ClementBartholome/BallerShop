@@ -24,30 +24,40 @@ let productItems = "";
 
 if (productsContainer) {
   productItems = productsContainer.querySelectorAll(".product");
+  console.log(productItems);
 }
 const noResultsMessage = document.getElementById("no-results-message");
 
 if (searchInput) {
   searchInput.addEventListener("input", function () {
+    // Get the trimmed and lowercase search term from the input
     const searchTerm = searchInput.value.trim().toLowerCase();
     let anyProductFound = false;
 
+    // Loop through each product item
     productItems.forEach(function (productItem) {
+      // Get the lowercase text content of the product name
       const productName = productItem
         .querySelector(".card-title")
         .textContent.toLowerCase();
 
+      // Check if the product name includes the search term
       if (productName.includes(searchTerm)) {
+        // If it does, display the product item
         productItem.style.display = "block";
         anyProductFound = true;
       } else {
+        // If it doesn't, hide the product item
         productItem.style.display = "none";
       }
     });
 
+    // Check if any product was found
     if (anyProductFound) {
+      // If any products were found, hide the "no results" message
       noResultsMessage.style.display = "none";
     } else {
+      // If no products were found, display the "no results" message
       noResultsMessage.style.display = "block";
     }
   });
