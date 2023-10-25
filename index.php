@@ -4,8 +4,14 @@ session_start();
 
 require_once "Config/autoload.php";
 
+// Parse the REQUEST_URI to get the path part (excluding the domain) of the current request.
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    // Returns '/Ballers/'
+
+// Remove the '/Ballers' prefix from the path
 $request = str_replace('/Ballers', '', $request);
+    // Returns '/'
+
 
 switch ($request) {
     case '/':
